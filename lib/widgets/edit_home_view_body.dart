@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import '../constants/constants.dart';
+import 'edit_image_body.dart';
+
+class EditHomeViewBody extends StatelessWidget {
+  const EditHomeViewBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.5,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        image: const DecorationImage(
+          fit: BoxFit.fitHeight,
+          image: AssetImage(kHomeImage),
+        ),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const EditImageBody(),
+    );
+  }
+}

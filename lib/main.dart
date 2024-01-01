@@ -13,6 +13,9 @@ class QuranApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+      ),
       initialRoute: HomeView.id,
       routes: {
         HomeView.id: (context) => const HomeView(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/constants/constants.dart';
-import 'custom_text_widget.dart';
+import 'custom_list_tile_widget.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

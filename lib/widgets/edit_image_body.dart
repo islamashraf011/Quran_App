@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'custom_text_widget.dart';
+import 'custom_list_tile_widget.dart';
 import 'pray_time_shape.dart';
 
 class EditImageBody extends StatelessWidget {
   const EditImageBody({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,18 +13,16 @@ class EditImageBody extends StatelessWidget {
         horizontal: MediaQuery.of(context).size.height * 0.02,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        // crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.12,
           ),
-          CustomTextWidget(
+          CustomListTileWidget(
             title: "يوم 14 ربيع أول",
-            fontSize: MediaQuery.of(context).size.height * 0.038,
-          ),
-          CustomTextWidget(
-            title: "يوم الجمعة / 29 سبتمبر",
-            fontSize: MediaQuery.of(context).size.height * 0.038,
+            titleSize: MediaQuery.of(context).size.height * 0.038,
+            subTitle: "يوم الجمعة / 29 سبتمبر",
+            subTitleSize: MediaQuery.of(context).size.height * 0.038,
           ),
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.03,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import 'custom_button_widget.dart';
-import 'custom_text_widget.dart';
+import 'custom_list_tile_widget.dart';
 
 class CustomPrayTimeShape extends StatelessWidget {
   const CustomPrayTimeShape({

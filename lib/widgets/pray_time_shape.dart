@@ -12,25 +12,14 @@ class CustomPrayTimeShape extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CustomTextWidget(
-              title: " 12:22",
-              fontSize: MediaQuery.of(context).size.height * 0.028,
-              color: kPrimaryColor,
-            ),
-            CustomTextWidget(
-              title: "موعد صلاة الظهر :",
-              fontSize: MediaQuery.of(context).size.height * 0.025,
-            )
-          ],
-        ),
-        Center(
-          child: CustomTextWidget(
-            title: "02:23:14",
-            fontSize: MediaQuery.of(context).size.height * 0.040,
-          ),
+        CustomListTileWidget(
+          title: "موعد صلاة الظهر :",
+          titleSize: MediaQuery.of(context).size.height * 0.025,
+          time: " 12:20",
+          timeColor: kPrimaryColor,
+          subTitle: "02:23:14",
+          subTitleSize: MediaQuery.of(context).size.height * 0.040,
+          subTitleAlign: TextAlign.center,
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,

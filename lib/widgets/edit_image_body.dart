@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'custom_list_tile_widget.dart';
 import 'pray_time_shape.dart';
 
@@ -8,20 +11,24 @@ class EditImageBody extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting("ar", null);
+    final hijriDate = HijriCalendar.fromDate(DateTime.now());
+    final formatHijriDate = hijriDate.toFormat("dd MMMM");
+    HijriCalendar.setLocal("ar");
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.height * 0.02,
       ),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.12,
           ),
           CustomListTileWidget(
-            title: "يوم 14 ربيع أول",
+            title: formatHijriDate,
             titleSize: MediaQuery.of(context).size.height * 0.038,
-            subTitle: "يوم الجمعة / 29 سبتمبر",
+            subTitle: DateFormat("EEEE, D MMMM", "ar").format(DateTime.now()),
             subTitleSize: MediaQuery.of(context).size.height * 0.038,
           ),
           SizedBox(

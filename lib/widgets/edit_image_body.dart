@@ -5,17 +5,27 @@ import 'package:intl/intl.dart';
 import 'custom_list_tile_widget.dart';
 import 'pray_time_shape.dart';
 
-class EditImageBody extends StatelessWidget {
+class EditImageBody extends StatefulWidget {
   const EditImageBody({
     super.key,
   });
+
+  @override
+  State<EditImageBody> createState() => _EditImageBodyState();
+}
+
+class _EditImageBodyState extends State<EditImageBody> {
+  @override
+  void initState() {
+    super.initState();
+    HijriCalendar.setLocal("ar");
+    initializeDateFormatting("ar", null);
+  }
+
   @override
   Widget build(BuildContext context) {
-    initializeDateFormatting("ar", null);
     final hijriDate = HijriCalendar.fromDate(DateTime.now());
     final formatHijriDate = hijriDate.toFormat("dd MMMM");
-    HijriCalendar.setLocal("ar");
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.height * 0.02,
@@ -28,7 +38,7 @@ class EditImageBody extends StatelessWidget {
           CustomListTileWidget(
             title: formatHijriDate,
             titleSize: MediaQuery.of(context).size.height * 0.038,
-            subTitle: DateFormat("EEEE, D MMMM", "ar").format(DateTime.now()),
+            subTitle: DateFormat("EEEE ، D MMMM", "ar").format(DateTime.now()),
             subTitleSize: MediaQuery.of(context).size.height * 0.038,
           ),
           SizedBox(

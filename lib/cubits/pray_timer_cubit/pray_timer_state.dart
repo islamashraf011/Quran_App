@@ -5,7 +5,11 @@ abstract class PrayTimerState {}
 
 final class PrayTimerInitial extends PrayTimerState {}
 
-final class PrayTimerLoading extends PrayTimerState {}
+final class PrayTimerLoading extends PrayTimerState {
+  final String formatedPrayTime;
+
+  PrayTimerLoading(this.formatedPrayTime);
+}
 
 final class PrayTimerSuccessful extends PrayTimerState {}
 

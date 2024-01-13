@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/views/home_view.dart';
+import 'package:quran_app/widgets/edit_prayer_time.dart';
 
 void main() {
   runApp(const QuranApp());
@@ -19,6 +20,7 @@ class QuranApp extends StatelessWidget {
       initialRoute: HomeView.id,
       routes: {
         HomeView.id: (context) => const HomeView(),
+        EditPrayerTime.id: (context) => const EditPrayerTime(),
       },
     );
   }

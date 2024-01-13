@@ -7,14 +7,14 @@ final class PrayTimerInitial extends PrayTimerState {}
 
 final class PrayTimerLoading extends PrayTimerState {
   final String formatedPrayTime;
+  final String nameofPray;
+  final DateTime prayerTime;
 
-  PrayTimerLoading(this.formatedPrayTime);
+  PrayTimerLoading(
+    this.formatedPrayTime,
+    this.nameofPray,
+    this.prayerTime,
+  );
 }
 
 final class PrayTimerSuccessful extends PrayTimerState {}
-
-final class PrayTimerFailure extends PrayTimerState {
-  final String errorMessage;
-
-  PrayTimerFailure(this.errorMessage);
-}

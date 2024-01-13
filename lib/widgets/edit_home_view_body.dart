@@ -14,7 +14,7 @@ class EditHomeViewBody extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: const DecorationImage(
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fill,
           image: AssetImage(kHomeImage),
         ),
         borderRadius: BorderRadius.circular(20),

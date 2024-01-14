@@ -29,24 +29,44 @@ class _EditTimeCardState extends State<EditTimeCard> {
           color: Colors.grey.withOpacity(0.07),
         ),
         child: ListTile(
-            title: Text(
-              textDirection: TextDirection.rtl,
-              widget.listPrayerName[widget.index],
-              style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.08,
-                fontWeight: FontWeight.bold,
-                color: kPrimaryColor,
-              ),
+          title: Text(
+            textDirection: TextDirection.rtl,
+            widget.listPrayerName[widget.index],
+            style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width * 0.08,
+              fontWeight: FontWeight.bold,
+              color: kPrimaryColor,
             ),
-            subtitle: Text(
-              textDirection: TextDirection.rtl,
-              "الساعة: ${widget.listPrayerTime[widget.index].hour} ,     الدقيقة: ${widget.listPrayerTime[widget.index].minute}",
-              style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.04,
-                fontWeight: FontWeight.bold,
-              ),
+          ),
+          subtitle: Text(
+            textDirection: TextDirection.rtl,
+            "الساعة: ${widget.listPrayerTime[widget.index].hour} ,     الدقيقة: ${widget.listPrayerTime[widget.index].minute}",
+            style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width * 0.04,
+              fontWeight: FontWeight.bold,
             ),
-            onTap: () {}),
+          ),
+          onTap: () async {
+            var pickedTime = await showTimePicker(
+              context: context,
+              initialTime: TimeOfDay.fromDateTime(
+                widget.listPrayerTime[widget.index],
+              ),
+            );
+            if (pickedTime != null) {
+              DateTime newTime = DateTime(
+                DateTime.now().year,
+                DateTime.now().month,
+                DateTime.now().day,
+                pickedTime.hour,
+                pickedTime.minute,
+                0,
+              );
+              widget.listPrayerTime[widget.index] = newTime;
+              setState(() {});
+            }
+          },
+        ),
       ),
     );
   }

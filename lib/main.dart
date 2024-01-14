@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'package:quran_app/views/home_view.dart';
 import 'package:quran_app/widgets/edit_prayer_time.dart';
 
@@ -12,16 +14,19 @@ class QuranApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
+    return BlocProvider(
+      create: (context) => PrayTimerCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        initialRoute: HomeView.id,
+        routes: {
+          HomeView.id: (context) => const HomeView(),
+          EditPrayerTime.id: (context) => const EditPrayerTime(),
+        },
       ),
-      initialRoute: HomeView.id,
-      routes: {
-        HomeView.id: (context) => const HomeView(),
-        EditPrayerTime.id: (context) => const EditPrayerTime(),
-      },
     );
   }
 }

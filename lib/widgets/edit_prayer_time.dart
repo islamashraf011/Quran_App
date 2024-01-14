@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'edit_prayer_time_body.dart';
 
 class EditPrayerTime extends StatelessWidget {
   const EditPrayerTime({super.key});
@@ -16,6 +17,7 @@ class EditPrayerTime extends StatelessWidget {
           ),
         ),
       ),
+      body: const EditPrayerTimeBody(),
     );
   }
 }

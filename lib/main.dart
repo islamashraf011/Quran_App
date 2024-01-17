@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'package:quran_app/views/home_view.dart';
-import 'package:quran_app/widgets/edit_prayer_time.dart';
+import 'package:quran_app/views/edit_prayer_time_view.dart';
+import 'package:quran_app/views/qiblah_view.dart';
 
 void main() {
   runApp(const QuranApp());
@@ -24,7 +25,8 @@ class QuranApp extends StatelessWidget {
         initialRoute: HomeView.id,
         routes: {
           HomeView.id: (context) => const HomeView(),
-          EditPrayerTime.id: (context) => const EditPrayerTime(),
+          EditPrayerTimeView.id: (context) => const EditPrayerTimeView(),
+          QiblahView.id: (context) => const QiblahView(),
         },
       ),
     );

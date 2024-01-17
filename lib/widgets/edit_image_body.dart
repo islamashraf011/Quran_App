@@ -25,7 +25,7 @@ class _EditImageBodyState extends State<EditImageBody> {
   @override
   Widget build(BuildContext context) {
     var hijriDate = HijriCalendar.fromDate(DateTime.now());
-    var formatHijriDate = hijriDate.toFormat("dd MMMM");
+    var formatHijriDate = hijriDate.toFormat("dd MMMM yyyy");
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.height * 0.02,

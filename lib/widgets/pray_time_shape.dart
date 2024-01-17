@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
-import 'package:quran_app/widgets/edit_prayer_time.dart';
+import 'package:quran_app/views/edit_prayer_time_view.dart';
+import 'package:quran_app/views/qiblah_view.dart';
 import '../constants/constants.dart';
 import 'custom_button_widget.dart';
 import 'custom_list_tile_widget.dart';
@@ -53,7 +54,12 @@ class CustomPrayTimeShape extends StatelessWidget {
                       title: "القبلة",
                       buttonColor: Colors.white,
                       fontcolor: Colors.black,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          QiblahView.id,
+                        );
+                      },
                     ),
                     CustomButton(
                       title: "تعديل وقت الصلاة",
@@ -61,7 +67,7 @@ class CustomPrayTimeShape extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          EditPrayerTime.id,
+                          EditPrayerTimeView.id,
                         );
                       },
                     )

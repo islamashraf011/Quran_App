@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'edit_home_view_body.dart';
+import 'package:quran_app/widgets/edit_home_view_body.dart';
 import 'list_of_card_item.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -9,7 +9,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        EditHomeViewBody(),
+        EdiHomeViewBody(),
         ListofCardItem(),
       ],
     );

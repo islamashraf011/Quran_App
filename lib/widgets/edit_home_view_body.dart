@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import 'edit_image_body.dart';
 
-class EditHomeViewBody extends StatelessWidget {
-  const EditHomeViewBody({
+class EdiHomeViewBody extends StatelessWidget {
+  const EdiHomeViewBody({
     super.key,
   });
 

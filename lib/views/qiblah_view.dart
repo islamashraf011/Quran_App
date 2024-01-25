@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/qiblah_view_body.dart';
+import '../widgets/qiblah/qiblah_view_body.dart';
 
 class QiblahView extends StatelessWidget {
   const QiblahView({super.key});

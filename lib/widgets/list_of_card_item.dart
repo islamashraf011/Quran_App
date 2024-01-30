@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quran_app/views/azkar_view.dart';
 import '../constants/constants.dart';
 import 'card_item_body.dart';
 
@@ -44,7 +45,9 @@ class ListofCardItem extends StatelessWidget {
                 icon: FontAwesomeIcons.personPraying,
                 title: "الأدعية و الأذكار",
                 cardColor: kCardColorThree,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AzkarView.id);
+                },
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.05,

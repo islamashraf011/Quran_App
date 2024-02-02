@@ -9,19 +9,30 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
     this.fontcolor = Colors.white,
     this.icon,
+    this.fontSize,
+    this.height,
+    this.width,
+    this.iconSize,
+    this.iconColor,
   });
   final Color? buttonColor;
   final String title;
   final void Function() onTap;
   final Color fontcolor;
+  final double? fontSize;
   final IconData? icon;
+  final double? iconSize;
+  final Color? iconColor;
+  final double? height;
+  final double? width;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.05,
-        width: MediaQuery.of(context).size.width * 0.41,
+        height: height ?? MediaQuery.of(context).size.height * 0.05,
+        width: width ?? MediaQuery.of(context).size.width * 0.41,
         decoration: BoxDecoration(
           color: buttonColor,
           borderRadius: BorderRadius.circular(30),
@@ -33,7 +44,8 @@ class CustomButton extends StatelessWidget {
               title,
               textDirection: TextDirection.rtl,
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.023,
+                fontSize:
+                    fontSize ?? MediaQuery.of(context).size.height * 0.023,
                 color: fontcolor,
                 fontWeight: FontWeight.bold,
               ),
@@ -46,7 +58,8 @@ class CustomButton extends StatelessWidget {
               Icon(
                 icon,
                 textDirection: TextDirection.rtl,
-                color: kPrimaryColor,
+                color: iconColor ?? kPrimaryColor,
+                size: iconSize,
               ),
           ],
         ),

@@ -50,10 +50,13 @@ class CustomPrayTimeShape extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomButton(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      width: MediaQuery.of(context).size.width * 0.41,
                       icon: Icons.explore,
+                      iconColor: kPrimaryColor,
                       title: "القبلة",
+                      fontSize: MediaQuery.of(context).size.height * 0.023,
                       buttonColor: Colors.white,
-                      fontcolor: Colors.black,
                       onTap: () {
                         Navigator.pushNamed(
                           context,
@@ -62,7 +65,11 @@ class CustomPrayTimeShape extends StatelessWidget {
                       },
                     ),
                     CustomButton(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      width: MediaQuery.of(context).size.width * 0.41,
                       title: "تعديل وقت الصلاة",
+                      fontcolor: Colors.white,
+                      fontSize: MediaQuery.of(context).size.height * 0.023,
                       buttonColor: kPrimaryColor,
                       onTap: () {
                         Navigator.pushNamed(

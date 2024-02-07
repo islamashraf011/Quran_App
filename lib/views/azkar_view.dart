@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/azkar_view_body.dart';
 
 class AzkarView extends StatelessWidget {
@@ -9,8 +8,10 @@ class AzkarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff5e9c2),
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: const Color(0xffd28e13),
         title: Text(
           "الأدعـيـة والأذكــار",
           style: TextStyle(

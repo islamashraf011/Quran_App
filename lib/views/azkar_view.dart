@@ -13,7 +13,7 @@ class AzkarView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xffd28e13),
         title: Text(
-          "الأدعـيـة والأذكــار",
+          "الأذكــار",
           style: TextStyle(
             color: Colors.white,
             fontSize: MediaQuery.of(context).size.width * 0.10,

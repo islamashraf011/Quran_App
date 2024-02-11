@@ -14,19 +14,21 @@ const Color kCardColorFour = Color(0xffb05ee7);
 
 const Color kAzkarColor = Color(0xffffd143);
 
-const String kAzkarSabah = "assets/jsons/azkar_json/azkar_sabah.json";
-const String kAzkarMassa = "assets/jsons/azkar_json/azkar_massa.json";
-const String kAzkarAfterPray = "assets/jsons/azkar_json/azkar_after_pray.json";
-const String kAzkarBeforeSleeping =
-    "assets/jsons/azkar_json/azkar_before_sleep.json";
-const String kAzkarHearingAzan = "assets/jsons/azkar_json/azkar_hear_azan.json";
-const String kAzkarHome = "assets/jsons/azkar_json/azkar_home.json";
-const String kAzkarinPraying = "assets/jsons/azkar_json/azkar_in_praying.json";
-const String kAzkarMecca = "assets/jsons/azkar_json/azkar_mecca.json";
-const String kAzkarWakingUp = "assets/jsons/azkar_json/azkar_wake_up.json";
-const String kAzkarWashing = "assets/jsons/azkar_json/azkar_washing.json";
+//Const to Represent Data of Azkar from Json Files
 
-const List<String> names = [
+const String kAzkarSabah = "assets/jsons/azkar/azkar_sabah.json";
+const String kAzkarMassa = "assets/jsons/azkar/azkar_massa.json";
+const String kAzkarAfterPray = "assets/jsons/azkar/azkar_after_pray.json";
+const String kAzkarBeforeSleeping =
+    "assets/jsons/azkar/azkar_before_sleep.json";
+const String kAzkarHearingAzan = "assets/jsons/azkar/azkar_hear_azan.json";
+const String kAzkarHome = "assets/jsons/azkar/azkar_home.json";
+const String kAzkarinPraying = "assets/jsons/azkar/azkar_in_praying.json";
+const String kAzkarMecca = "assets/jsons/azkar/azkar_mecca.json";
+const String kAzkarWakingUp = "assets/jsons/azkar/azkar_wake_up.json";
+const String kAzkarWashing = "assets/jsons/azkar/azkar_washing.json";
+
+const List<String> namesofAzkar = [
   "أذكـــار الصبـــاح",
   "أذكـــار المســـاء",
   "أذكـــار بعد الصــلاة",
@@ -51,3 +53,22 @@ const List<IconData> icon = [
   Icons.home_outlined,
   FontAwesomeIcons.handsPraying
 ];
+
+//Const to Represent Data of Prayers from Json Files
+const List<String> namesofPrayers = [
+  "الـرُّقيـة الشـرعـية",
+  "أدعية النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ",
+  "أدعيــة الأنبياء",
+  "أدعيــة للمتوفي",
+  "الأدعيــة القرآنية",
+  "أدعيــة متنوعـة",
+  "دعــاء ختم القرآن الكريـم",
+];
+
+const String kRoqiaaSharaaya = "assets/jsons/prayers/roqiaa_sharaaya.json";
+const String kPrayerRasol = "assets/jsons/prayers/prayer_rasol.json";
+const String kPrayerAnbiaa = "assets/jsons/prayers/prayer_anbiaa.json";
+const String kPrayerforDeath = "assets/jsons/prayers/prayer_for_death.json";
+const String kPrayerQuran = "assets/jsons/prayers/prayer_quran.json";
+const String kPrayerRandom = "assets/jsons/prayers/prayer_random.json";
+const String kPrayerQuranSeal = "assets/jsons/prayers/prayer_quran_seal.json";

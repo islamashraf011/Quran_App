@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/widgets/prayer_reading_view_body.dart';
 
 class PrayerView extends StatelessWidget {
   const PrayerView({super.key});
@@ -19,6 +20,7 @@ class PrayerView extends StatelessWidget {
           ),
         ),
       ),
+      body: const PrayerReadingViewBody(),
     );
   }
 }

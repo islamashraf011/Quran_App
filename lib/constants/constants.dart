@@ -70,12 +70,12 @@ const List<String> azkarjsonfiles = [
 //Const to Represent Data of Prayers from Json Files
 const List<String> namesofPrayers = [
   "الـرُّقيـة الشـرعـية",
-  "أدعية النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ",
+  "أدعية النَّبِيِّ",
   "أدعيــة الأنبياء",
   "أدعيــة للمتوفي",
   "الأدعيــة القرآنية",
   "أدعيــة متنوعـة",
-  "دعــاء ختم القرآن الكريـم",
+  "دعــاء ختم القرآن",
 ];
 
 const String kRoqiaaSharaaya = "assets/jsons/prayers/roqiaa_sharaaya.json";

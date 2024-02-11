@@ -4,6 +4,7 @@ import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'package:quran_app/views/azkar_view.dart';
 import 'package:quran_app/views/home_view.dart';
 import 'package:quran_app/views/edit_prayer_time_view.dart';
+import 'package:quran_app/views/prayer_view.dart';
 import 'package:quran_app/views/qiblah_view.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class QuranApp extends StatelessWidget {
           EditPrayerTimeView.id: (context) => const EditPrayerTimeView(),
           QiblahView.id: (context) => const QiblahView(),
           AzkarView.id: (context) => const AzkarView(),
+          PrayerView.id: (context) => const PrayerView(),
         },
       ),
     );

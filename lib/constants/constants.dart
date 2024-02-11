@@ -54,6 +54,19 @@ const List<IconData> icon = [
   FontAwesomeIcons.handsPraying
 ];
 
+const List<String> azkarjsonfiles = [
+  kAzkarSabah,
+  kAzkarMassa,
+  kAzkarAfterPray,
+  kAzkarBeforeSleeping,
+  kAzkarWakingUp,
+  kAzkarinPraying,
+  kAzkarHearingAzan,
+  kAzkarWashing,
+  kAzkarHome,
+  kAzkarMecca,
+];
+
 //Const to Represent Data of Prayers from Json Files
 const List<String> namesofPrayers = [
   "الـرُّقيـة الشـرعـية",
@@ -72,3 +85,13 @@ const String kPrayerforDeath = "assets/jsons/prayers/prayer_for_death.json";
 const String kPrayerQuran = "assets/jsons/prayers/prayer_quran.json";
 const String kPrayerRandom = "assets/jsons/prayers/prayer_random.json";
 const String kPrayerQuranSeal = "assets/jsons/prayers/prayer_quran_seal.json";
+
+const List<String> prayersjsonfiles = [
+  kRoqiaaSharaaya,
+  kPrayerRasol,
+  kPrayerAnbiaa,
+  kPrayerforDeath,
+  kPrayerQuran,
+  kPrayerRandom,
+  kPrayerQuranSeal
+];

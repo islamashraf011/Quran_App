@@ -20,7 +20,7 @@ class ListofCardItem extends StatelessWidget {
             children: [
               CardItemBody(
                 icon: Icons.headphones,
-                title: "الاستماع للقرأن",
+                title: "الاستماع للقـرآن",
                 cardColor: kCardColorTwo,
                 onTap: () {},
               ),
@@ -29,7 +29,7 @@ class ListofCardItem extends StatelessWidget {
               ),
               CardItemBody(
                 icon: Icons.menu_book,
-                title: "قرأه القرأن",
+                title: "قـراءة القـرآن",
                 cardColor: kCardColorOne,
                 onTap: () {},
               ),
@@ -43,7 +43,7 @@ class ListofCardItem extends StatelessWidget {
             children: [
               CardItemBody(
                 icon: FontAwesomeIcons.personPraying,
-                title: "الأدعية و الأذكار",
+                title: "الأذكـــــار",
                 cardColor: kCardColorThree,
                 onTap: () {
                   Navigator.pushNamed(context, AzkarView.id);
@@ -53,8 +53,8 @@ class ListofCardItem extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.05,
               ),
               CardItemBody(
-                icon: FontAwesomeIcons.mapLocationDot,
-                title: "العثور علي مسجد",
+                icon: FontAwesomeIcons.handsPraying,
+                title: "الأدعـيــــة",
                 cardColor: kCardColorFour,
                 onTap: () {},
               ),

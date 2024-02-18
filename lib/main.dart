@@ -6,6 +6,7 @@ import 'package:quran_app/views/home_view.dart';
 import 'package:quran_app/views/edit_prayer_time_view.dart';
 import 'package:quran_app/views/prayer_view.dart';
 import 'package:quran_app/views/qiblah_view.dart';
+import 'package:quran_app/views/quran_reading_view.dart';
 
 void main() {
   runApp(const QuranApp());
@@ -31,6 +32,7 @@ class QuranApp extends StatelessWidget {
           QiblahView.id: (context) => const QiblahView(),
           AzkarView.id: (context) => const AzkarView(),
           PrayerView.id: (context) => const PrayerView(),
+          QuranReadingView.id: (context) => const QuranReadingView(),
         },
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'custom_list_tile_widget.dart';
+import '../components/custom_list_tile_widget.dart';
 import 'pray_time_shape.dart';
 
 class EditImageBody extends StatefulWidget {

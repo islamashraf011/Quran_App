@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import '../show_snack_bar.dart';
+import '../../components/show_snack_bar.dart';
 import 'open_location_setting_dialog.dart';
 
 Future<Position> getCurrentLocationofDevice(BuildContext context) async {

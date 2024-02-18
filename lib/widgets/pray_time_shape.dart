@@ -5,8 +5,8 @@ import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'package:quran_app/views/edit_prayer_time_view.dart';
 import 'package:quran_app/views/qiblah_view.dart';
 import '../constants/constants.dart';
-import 'custom_button_widget.dart';
-import 'custom_list_tile_widget.dart';
+import '../components/custom_button_widget.dart';
+import '../components/custom_list_tile_widget.dart';
 
 class CustomPrayTimeShape extends StatelessWidget {
   const CustomPrayTimeShape({

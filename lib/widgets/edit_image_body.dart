@@ -38,7 +38,7 @@ class _EditImageBodyState extends State<EditImageBody> {
           CustomListTileWidget(
             title: formatHijriDate,
             titleSize: MediaQuery.of(context).size.height * 0.038,
-            subTitle: DateFormat("EEEE ، D MMMM", "ar").format(DateTime.now()),
+            subTitle: DateFormat("EEEE ، d MMMM", "ar").format(DateTime.now()),
             subTitleSize: MediaQuery.of(context).size.height * 0.038,
           ),
           SizedBox(

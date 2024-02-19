@@ -24,6 +24,9 @@ class QuranApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.dark,
+          dividerTheme: DividerThemeData(
+            color: Colors.white.withOpacity(0.5),
+          ),
         ),
         initialRoute: HomeView.id,
         routes: {

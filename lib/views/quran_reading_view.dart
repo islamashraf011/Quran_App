@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quran_app/constants/constants.dart';
+import '../components/custom_row_menu_item.dart';
 import '../widgets/quran_reading_view_body.dart';
 
 class QuranReadingView extends StatefulWidget {
@@ -22,7 +22,7 @@ class _QuranReadingViewState extends State<QuranReadingView> {
         });
       },
       child: Scaffold(
-        backgroundColor: kAzkarColor,
+        backgroundColor: Colors.blue[300],
         appBar: showAppBar
             ? AppBar(
                 backgroundColor: Colors.black.withOpacity(0.7),
@@ -36,18 +36,36 @@ class _QuranReadingViewState extends State<QuranReadingView> {
                     ),
                   ),
                   PopupMenuButton(
-                    color: Colors.black.withOpacity(0.7),
+                    color: Colors.black.withOpacity(0.6),
                     icon: const Icon(Icons.menu),
                     offset: const Offset(0, 55),
                     itemBuilder: (context) {
-                      return [
+                      // Make this step to handle it to take Divider
+                      return <PopupMenuEntry<dynamic>>[
                         PopupMenuItem(
-                          child: const Text(
-                            "الفهـرس",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
+                          child: const CustomRowMenuItem(
+                            icon: Icons.more_vert,
+                            text: "الفهـرس",
+                          ),
+                          onTap: () {},
+                        ),
+                        const PopupMenuDivider(
+                          height: 20,
+                        ),
+                        PopupMenuItem(
+                          child: const CustomRowMenuItem(
+                            icon: Icons.bookmark_add_outlined,
+                            text: "حفظ علامـة",
+                          ),
+                          onTap: () {},
+                        ),
+                        const PopupMenuDivider(
+                          height: 20,
+                        ),
+                        PopupMenuItem(
+                          child: const CustomRowMenuItem(
+                            icon: Icons.bookmark_border,
+                            text: "انتقال إلي العلامـة",
                           ),
                           onTap: () {},
                         ),

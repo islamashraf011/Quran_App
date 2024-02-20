@@ -12,13 +12,15 @@ class QuranReadingView extends StatefulWidget {
 
 class _QuranReadingViewState extends State<QuranReadingView> {
   bool showAppBar = false;
+  int markedPageIndex = 0; //Default Value that make mark on first page
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          showAppBar = !showAppBar;
+          showAppBar = !showAppBar; // To Make AppBar Hide when Click on Screen
         });
       },
       child: Scaffold(
@@ -57,7 +59,12 @@ class _QuranReadingViewState extends State<QuranReadingView> {
                             icon: Icons.bookmark_add_outlined,
                             text: "حفظ علامـة",
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                              //Make markedPageIndex = current index in PageViewBuilder to put BookMark on It
+                              markedPageIndex = pageController.page!.round();
+                            });
+                          },
                         ),
                         const PopupMenuDivider(
                           height: 20,
@@ -67,7 +74,14 @@ class _QuranReadingViewState extends State<QuranReadingView> {
                             icon: Icons.bookmark_border,
                             text: "انتقال إلي العلامـة",
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            //Use PageController to go to the CurrentIndex that has the BookMark
+                            pageController.animateToPage(
+                              markedPageIndex,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.easeIn,
+                            );
+                          },
                         ),
                       ];
                     },
@@ -75,7 +89,15 @@ class _QuranReadingViewState extends State<QuranReadingView> {
                 ],
               )
             : null,
-        body: const QuranReadingViewBody(),
+        body: QuranReadingViewBody(
+          pageController: pageController,
+          markedPageIndex: markedPageIndex,
+          onBookmarkTap: (index) {
+            setState(() {
+              markedPageIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

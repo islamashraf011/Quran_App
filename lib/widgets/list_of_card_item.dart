@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quran_app/views/azkar_view.dart';
 import 'package:quran_app/views/prayer_view.dart';
+import 'package:quran_app/views/quran_listening_view.dart';
 import 'package:quran_app/views/quran_reading_view.dart';
 import '../constants/constants.dart';
 import 'card_item_body.dart';
@@ -24,7 +25,9 @@ class ListofCardItem extends StatelessWidget {
                 icon: Icons.headphones,
                 title: "الاستماع للقـرآن",
                 cardColor: kCardColorTwo,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, QuranListeningView.id);
+                },
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.05,

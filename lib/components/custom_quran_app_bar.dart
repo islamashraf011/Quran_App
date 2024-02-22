@@ -12,11 +12,11 @@ class CustomQuranAppBar extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.black.withOpacity(0.7),
       actions: [
-        const Text(
+        Text(
           "القائمة الرئيسية",
           textDirection: TextDirection.rtl,
           style: TextStyle(
-            fontSize: 25,
+            fontSize: MediaQuery.of(context).size.width * 0.063,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -34,8 +34,8 @@ class CustomQuranAppBar extends StatelessWidget {
                   text: "الفهـرس",
                 ),
               ),
-              const PopupMenuDivider(
-                height: 20,
+              PopupMenuDivider(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               PopupMenuItem(
                 onTap: addMark,
@@ -44,8 +44,8 @@ class CustomQuranAppBar extends StatelessWidget {
                   text: "حفظ علامـة",
                 ),
               ),
-              const PopupMenuDivider(
-                height: 20,
+              PopupMenuDivider(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               PopupMenuItem(
                 onTap: goToMark,

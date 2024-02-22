@@ -15,9 +15,9 @@ class CustomRowMenuItem extends StatelessWidget {
       children: [
         Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: MediaQuery.of(context).size.width * 0.055,
           ),
         ),
         Icon(

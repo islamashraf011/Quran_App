@@ -9,6 +9,7 @@ class QuranListeningView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           "القائمـة الرئيسية",
@@ -22,5 +23,3 @@ class QuranListeningView extends StatelessWidget {
     );
   }
 }
-
-

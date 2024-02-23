@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/quran_listening_view_body.dart';
 
 class QuranListeningView extends StatelessWidget {
   const QuranListeningView({super.key});
@@ -17,6 +18,9 @@ class QuranListeningView extends StatelessWidget {
           ),
         ),
       ),
+      body: const QuranListeningViewBody(),
     );
   }
 }
+
+

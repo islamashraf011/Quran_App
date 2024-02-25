@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/components/custom_surah_listening_button.dart';
 import 'package:quran_app/constants/constants.dart';
+import 'package:quran_app/views/audio_player_view.dart';
 
 class QuranListeningViewBody extends StatelessWidget {
   const QuranListeningViewBody({super.key});
@@ -15,7 +16,16 @@ class QuranListeningViewBody extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         return CustomSurahButton(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const AudioPlayerView();
+                },
+              ),
+            );
+          },
           numberSurah: index,
           nameSurah: surahList[index],
         );

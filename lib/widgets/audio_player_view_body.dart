@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import '../components/custom_icon_button.dart';
+import '../components/custom_play_audio.dart';
 import '../constants/constants.dart';
 
 class AudioPlayerViewBody extends StatelessWidget {
-  const AudioPlayerViewBody({super.key});
+  const AudioPlayerViewBody({
+    super.key,
+    required this.index,
+  });
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -20,50 +24,13 @@ class AudioPlayerViewBody extends StatelessWidget {
           ],
         ),
       ),
-      child: Column(
-        children: [
-          Text(
-            "الشيخ ماهر المعيقلي .. سورة الفاتحة",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: MediaQuery.of(context).size.height * 0.027,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Image.asset(
-            kMaher,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Slider(
-            min: 0.0,
-            max: 100,
-            thumbColor: Colors.white,
-            value: 0.2,
-            onChanged: (double) {},
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.04,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CustomIconButton(
-                onPressed: () {},
-                icon: Icons.skip_previous,
-              ),
-              CustomIconButton(
-                onPressed: () {},
-                icon: Icons.play_circle_fill,
-              ),
-              CustomIconButton(
-                onPressed: () {},
-                icon: Icons.skip_next,
-              ),
-            ],
-          )
-        ],
+      child: CustomPlayAudio(
+        index: index,
+        sliderMax: 100,
+        audioRateValue: 0.2,
+        skipPrevious: () {},
+        playAudio: () {},
+        skipNext: () {},
       ),
     );
   }

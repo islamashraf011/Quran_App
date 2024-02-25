@@ -44,6 +44,7 @@ dependencies:
   flutter_qiblah: ^2.2.1
   geolocator: ^10.1.0
   shared_preferences: ^2.2.2
+  just_audio: ^0.9.36
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
     - assets/jsons/azkar/
     - assets/jsons/prayers/
     - assets/quran/
+    - assets/audios/
     
     # - images/a_dot_ham.jpeg
 

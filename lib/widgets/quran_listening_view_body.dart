@@ -21,7 +21,9 @@ class QuranListeningViewBody extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const AudioPlayerView();
+                  return AudioPlayerView(
+                    index: index,
+                  );
                 },
               ),
             );

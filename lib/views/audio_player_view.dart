@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../widgets/audio_player_view_body.dart';
 
 class AudioPlayerView extends StatelessWidget {
-  const AudioPlayerView({super.key});
-
+  const AudioPlayerView({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,9 @@ class AudioPlayerView extends StatelessWidget {
           ),
         ),
       ),
-      body: const AudioPlayerViewBody(),
+      body: AudioPlayerViewBody(
+        index: index,
+      ),
     );
   }
 }

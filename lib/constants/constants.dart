@@ -5,6 +5,7 @@ const String kHomeImage = "assets/images/mosque home view.jpg";
 const String kCompassImage = "assets/images/compass.png";
 const String kNeedleImage = "assets/images/needle.png";
 const String kMeccahImage = "assets/images/Mecca.png";
+const String kMaher = "assets/images/maher.png";
 
 const Color kPrimaryColor = Color(0xff15a78e);
 const Color kCardColorOne = Color(0xff13a088);
@@ -13,6 +14,9 @@ const Color kCardColorThree = Color(0xff1a84ad);
 const Color kCardColorFour = Color(0xffb05ee7);
 
 const Color kAzkarColor = Color(0xffffd143);
+
+const Color kAudioColorOne = Color(0xff071a2c);
+const Color kAudioColorTwo = Color(0xff144771);
 
 //Const to Represent Data of Azkar from Json Files
 

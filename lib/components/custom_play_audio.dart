@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-
+import 'package:quran_app/services/change_duration_format.dart';
 import '../constants/constants.dart';
 import 'custom_icon_button.dart';
 
 class CustomPlayAudio extends StatelessWidget {
   const CustomPlayAudio({
     super.key,
-    required this.index,
-    required this.sliderMax,
-    required this.audioRateValue,
+    required this.maxDuration,
+    required this.position,
     required this.skipPrevious,
     required this.playAudio,
     required this.skipNext,
+    required this.title,
+    required this.pause,
+    this.onChanged,
   });
-  final int index;
-  final double sliderMax;
-  final double audioRateValue;
+  final Duration maxDuration;
+  final Duration position;
   final Function() skipPrevious;
   final Function() playAudio;
   final Function() skipNext;
-
+  final Function(double)? onChanged;
+  final String title;
+  final bool pause;
   @override
   Widget build(BuildContext context) {
-    final String title = surahList[index];
     return Column(
       children: [
         Text(
+          "الشيخ ماهر المعيقلي .. سُوْرَةُ $title",
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.center,
-          "الشيخ ماهر المعيقلي .. سُوْرَةُ $title",
           style: TextStyle(
             color: Colors.white,
             fontSize: MediaQuery.of(context).size.height * 0.040,
@@ -42,11 +44,33 @@ class CustomPlayAudio extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.03,
         ),
         Slider(
-          min: 0.0,
-          max: sliderMax,
           thumbColor: Colors.white,
-          value: audioRateValue,
-          onChanged: (newRate) {},
+          min: 0,
+          max: maxDuration.inSeconds.toDouble(),
+          value: position.inSeconds.toDouble(),
+          onChanged: onChanged,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                formatDuration(position),
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                formatDuration(maxDuration),
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.04,
@@ -60,7 +84,7 @@ class CustomPlayAudio extends StatelessWidget {
             ),
             CustomIconButton(
               onPressed: playAudio,
-              icon: Icons.play_circle_fill,
+              icon: pause ? Icons.play_circle_fill : Icons.pause_circle_filled,
             ),
             CustomIconButton(
               onPressed: skipNext,

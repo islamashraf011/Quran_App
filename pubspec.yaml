@@ -44,7 +44,8 @@ dependencies:
   flutter_qiblah: ^2.2.1
   geolocator: ^10.1.0
   shared_preferences: ^2.2.2
-  just_audio: ^0.9.36
+  audioplayers: ^5.2.1
+  audio_service: ^0.18.12
 
 dev_dependencies:
   flutter_test:

@@ -1,83 +1,72 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:quran_app/services/get_audio_path.dart';
+import 'package:audioplayers/audioplayers.dart';
 part 'audio_player_state.dart';
 
 class AudioPlayerCubit extends Cubit<AudioPlayerState> {
-  AudioPlayerCubit() : super(AudioPlayerInitial());
+  AudioPlayerCubit(this.currentIndex) : super(AudioPlayerInitial());
+
   final List<String> audioList = generateAudioPaths();
   final AudioPlayer audioPlayer = AudioPlayer();
+  Duration? duration = Duration.zero;
+  Duration? position;
+  int currentIndex;
+  bool isPlaying = false;
 
   Future<void> play(int index) async {
     try {
+      if (!isPlaying) {
+        await audioPlayer.play(AssetSource(audioList[currentIndex]));
+        isPlaying = true;
+        emit(PlayingAudioState());
+      } else if (isPlaying && currentIndex == index) {
+        await audioPlayer.pause();
+        isPlaying = false;
+        emit(PausedAudioState());
+      } else if (isPlaying && currentIndex != index) {
+        await audioPlayer.stop();
+        isPlaying = false;
+        emit(StoppedAudioState());
+      } else if (!isPlaying && currentIndex == index) {
+        await audioPlayer.resume();
+        isPlaying = true;
+        emit(PlayingAudioState());
+      }
+    } catch (e) {
+      emit(ErrorAudioState(errorMsg: e.toString()));
+    }
+
+    currentIndex = index;
+    duration = await audioPlayer.getDuration();
+    audioPlayer.onPositionChanged.listen((event) {
+      position = event;
       emit(LoadingAudioState());
-      await audioPlayer.setAsset(
-        audioList[index],
-      );
-      await audioPlayer.play();
-      emit(
-        PlayingAudioState(),
-      );
-    } catch (e) {
-      emit(
-        ErrorAudioState(
-          errorMsg: e.toString(),
-        ),
-      );
-    }
+    });
   }
 
-  Future<void> pause(int index) async {
+  Future<void> skipNext() async {
     try {
-      emit(
-        LoadingAudioState(),
-      );
-      await audioPlayer.pause();
-      emit(
-        PausedAudioState(),
-      );
-    } catch (e) {
-      emit(
-        ErrorAudioState(
-          errorMsg: e.toString(),
-        ),
-      );
-    }
-  }
-
-  Future<void> stop(int index) async {
-    try {
-      emit(
-        LoadingAudioState(),
-      );
-      await audioPlayer.stop();
-      emit(
-        StoppedAudioState(),
-      );
-    } catch (e) {
-      emit(
-        ErrorAudioState(
-          errorMsg: e.toString(),
-        ),
-      );
-    }
-  }
-
-  Future<void> skipNext(int index) async {
-    try {
-      if (index < audioList.length - 1) {
+      if (currentIndex < audioList.length - 1) {
         emit(
           LoadingAudioState(),
         );
-        await audioPlayer.setAsset(
-          audioList[index + 1],
+        await audioPlayer.play(
+          AssetSource(audioList[currentIndex + 1]),
         );
-        await audioPlayer.play();
+        currentIndex++;
+        isPlaying = true;
+        duration = await audioPlayer.getDuration();
+
         emit(
-          SkipNextAudioState(
-            index: index + 1,
-          ),
+          SkipNextAudioState(),
+        );
+      } else {
+        currentIndex = audioList.length - 1;
+        emit(
+          SkipNextAudioState(),
         );
       }
     } catch (e) {
@@ -89,20 +78,26 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
     }
   }
 
-  Future<void> skipPrevios(int index) async {
+  Future<void> skipPrevios() async {
     try {
-      if (index > 0) {
+      if (currentIndex > 0) {
         emit(
           LoadingAudioState(),
         );
-        await audioPlayer.setAsset(
-          audioList[index - 1],
+        await audioPlayer.play(
+          AssetSource(audioList[currentIndex - 1]),
         );
-        await audioPlayer.play();
+        currentIndex--;
+        isPlaying = true;
+        duration = await audioPlayer.getDuration();
+
         emit(
-          SkipPreviosAudioState(
-            index: index - 1,
-          ),
+          SkipPreviosAudioState(),
+        );
+      } else {
+        currentIndex = 0;
+        emit(
+          SkipPreviosAudioState(),
         );
       }
     } catch (e) {

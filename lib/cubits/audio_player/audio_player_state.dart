@@ -13,17 +13,9 @@ final class StoppedAudioState extends AudioPlayerState {}
 
 final class PausedAudioState extends AudioPlayerState {}
 
-final class SkipNextAudioState extends AudioPlayerState {
-  final int index;
+final class SkipNextAudioState extends AudioPlayerState {}
 
-  SkipNextAudioState({required this.index});
-}
-
-final class SkipPreviosAudioState extends AudioPlayerState {
-  final int index;
-
-  SkipPreviosAudioState({required this.index});
-}
+final class SkipPreviosAudioState extends AudioPlayerState {}
 
 final class ErrorAudioState extends AudioPlayerState {
   final String errorMsg;

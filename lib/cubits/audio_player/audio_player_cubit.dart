@@ -1,50 +1,76 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:meta/meta.dart';
+import 'package:quran_app/constants/constants.dart';
 import 'package:quran_app/services/get_audio_path.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 part 'audio_player_state.dart';
 
 class AudioPlayerCubit extends Cubit<AudioPlayerState> {
-  AudioPlayerCubit(this.currentIndex) : super(AudioPlayerInitial());
+  AudioPlayerCubit(this.currentIndex) : super(AudioPlayerInitial()) {
+    //Used it here to Make listen all time
+    setupPlayerListeners();
+  }
 
   final List<String> audioList = generateAudioPaths();
   final AudioPlayer audioPlayer = AudioPlayer();
-  Duration? duration = Duration.zero;
+  Duration? duration;
   Duration? position;
   int currentIndex;
+  MediaItem? mediaItem;
   bool isPlaying = false;
+  final List<AudioSource> audioSources = [];
+  final List<MediaItem> mediaItems = [];
 
   Future<void> play(int index) async {
+    ConcatenatingAudioSource playList = getAudioPlayList();
+
     try {
-      if (!isPlaying) {
-        await audioPlayer.play(AssetSource(audioList[currentIndex]));
+      if (!isPlaying && position == Duration.zero) {
+        currentIndex = index;
+        mediaItem = mediaItems[currentIndex];
+        audioPlayer.setAudioSource(
+          playList,
+          initialIndex: currentIndex,
+        );
+
+        audioPlayer.play();
         isPlaying = true;
-        emit(PlayingAudioState());
+        currentIndex = index;
+        emit(
+          PlayingAudioState(),
+        );
       } else if (isPlaying && currentIndex == index) {
-        await audioPlayer.pause();
+        audioPlayer.pause();
         isPlaying = false;
-        emit(PausedAudioState());
+        emit(
+          PausedAudioState(),
+        );
       } else if (isPlaying && currentIndex != index) {
-        await audioPlayer.stop();
+        audioPlayer.stop();
         isPlaying = false;
-        emit(StoppedAudioState());
-      } else if (!isPlaying && currentIndex == index) {
-        await audioPlayer.resume();
+        emit(
+          StoppedAudioState(),
+        );
+      } else if (position != null) {
+        await audioPlayer.seek(position);
+        audioPlayer.play();
         isPlaying = true;
-        emit(PlayingAudioState());
+        currentIndex = index;
+
+        emit(
+          PlayingAudioState(),
+        );
       }
     } catch (e) {
-      emit(ErrorAudioState(errorMsg: e.toString()));
+      emit(
+        ErrorAudioState(
+          errorMsg: e.toString(),
+        ),
+      );
     }
-
-    currentIndex = index;
-    duration = await audioPlayer.getDuration();
-    audioPlayer.onPositionChanged.listen((event) {
-      position = event;
-      emit(LoadingAudioState());
-    });
   }
 
   Future<void> skipNext() async {
@@ -53,12 +79,11 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
         emit(
           LoadingAudioState(),
         );
-        await audioPlayer.play(
-          AssetSource(audioList[currentIndex + 1]),
-        );
+
+        await audioPlayer.seekToNext();
+
         currentIndex++;
         isPlaying = true;
-        duration = await audioPlayer.getDuration();
 
         emit(
           SkipNextAudioState(),
@@ -84,12 +109,11 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
         emit(
           LoadingAudioState(),
         );
-        await audioPlayer.play(
-          AssetSource(audioList[currentIndex - 1]),
-        );
+
+        await audioPlayer.seekToPrevious();
+
         currentIndex--;
         isPlaying = true;
-        duration = await audioPlayer.getDuration();
 
         emit(
           SkipPreviosAudioState(),
@@ -107,5 +131,72 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
         ),
       );
     }
+  }
+
+//Responsible for Listening to Audio Position & Duration & Player State
+
+  void setupPlayerListeners() {
+    try {
+      audioPlayer.positionStream.listen(
+        (event) {
+          position = event;
+          emit(LoadingAudioState());
+        },
+      );
+      audioPlayer.durationStream.listen(
+        (event) {
+          duration = event;
+          emit(LoadingAudioState());
+        },
+      );
+      audioPlayer.playerStateStream.listen(
+        (playerState) {
+          isPlaying = playerState.playing;
+          emit(LoadingAudioState());
+        },
+      );
+      audioPlayer.currentIndexStream.listen(
+        (index) {
+          if (index != null) {
+            currentIndex = index;
+            emit(LoadingAudioState());
+          }
+        },
+      );
+    } catch (e) {
+      emit(
+        ErrorAudioState(errorMsg: e.toString()),
+      );
+    }
+  }
+
+//Responsible for Make a List of Audio Play List with all Audio Info to play it
+
+  ConcatenatingAudioSource getAudioPlayList() {
+    for (int i = 0; i < audioList.length; i++) {
+      final String audioPath = audioList[i];
+      final String title = "سُوْرَةُ ${surahList[i]}";
+
+      final MediaItem item = MediaItem(
+        id: audioPath,
+        title: title,
+        artist: "الشيخ ماهر المعيقلي",
+        artUri: Uri.parse(kMaher),
+      );
+      mediaItems.add(item);
+
+      final source = AudioSource.asset(
+        audioPath,
+        tag: item,
+      );
+      audioSources.add(source);
+    }
+
+    final playList = ConcatenatingAudioSource(
+      shuffleOrder: DefaultShuffleOrder(),
+      useLazyPreparation: true,
+      children: audioSources,
+    );
+    return playList;
   }
 }

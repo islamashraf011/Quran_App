@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:quran_app/cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'package:quran_app/views/azkar_view.dart';
 import 'package:quran_app/views/home_view.dart';
@@ -9,7 +12,21 @@ import 'package:quran_app/views/qiblah_view.dart';
 import 'package:quran_app/views/quran_listening_view.dart';
 import 'package:quran_app/views/quran_reading_view.dart';
 
-void main() {
+void main() async {
+  try {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    );
+    log(
+      "successcecss",
+    );
+  } catch (e) {
+    log(
+      e.toString(),
+    );
+  }
   runApp(const QuranApp());
 }
 

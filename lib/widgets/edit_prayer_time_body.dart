@@ -3,20 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/pray_timer_cubit/pray_timer_cubit.dart';
 import 'edit_time_card.dart';
 
-class EditPrayerTimeBody extends StatefulWidget {
+class EditPrayerTimeBody extends StatelessWidget {
   const EditPrayerTimeBody({
     super.key,
   });
 
   @override
-  State<EditPrayerTimeBody> createState() => _EditPrayerTimeBodyState();
-}
-
-class _EditPrayerTimeBodyState extends State<EditPrayerTimeBody> {
-  @override
   Widget build(BuildContext context) {
     PrayTimerCubit cubit = BlocProvider.of<PrayTimerCubit>(context);
-    List<DateTime> listPrayerTime = cubit.listofPrayTime;
+    List<DateTime> listPrayerTime = cubit.getCurrentPrayerTime();
     List<String> listPrayerName = cubit.prayerNames;
 
     return ListView.builder(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:adhan/adhan.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:quran_app/services/change_duration_format.dart';
@@ -6,50 +7,10 @@ part 'pray_timer_state.dart';
 
 class PrayTimerCubit extends Cubit<PrayTimerState> {
   PrayTimerCubit() : super(PrayTimerInitial());
+
   late Timer timer;
   String formattedTime = "";
-  List<DateTime> listofPrayTime = [
-    DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      5,
-      20,
-      0,
-    ),
-    DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      12,
-      2,
-      0,
-    ),
-    DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      14,
-      53,
-      0,
-    ),
-    DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      17,
-      13,
-      0,
-    ),
-    DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      18,
-      35,
-      0,
-    ),
-  ];
+
   List<String> prayerNames = [
     "موعد صلاة الفجر: ",
     "موعد صلاة الظهر: ",
@@ -59,6 +20,8 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
   ];
 
   void startCountDown() {
+    List<DateTime> listofPrayTime = getCurrentPrayerTime();
+
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
@@ -73,7 +36,6 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
             difference = currentTime.difference(nextPrayerTime);
             formattedTime = formatDuration(difference.abs());
             currentIndex = i;
-            print("todayIndex = $nextPrayerTime");
             break;
           }
         }
@@ -87,5 +49,23 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
       },
     );
   }
-}
 
+  getCurrentPrayerTime() {
+    final myCoordinates = Coordinates(30.033333, 31.233334);
+    final params = CalculationMethod.karachi.getParameters();
+    final date = DateComponents.from(DateTime.now());
+    final prayertimesss = PrayerTimes(
+      myCoordinates,
+      date,
+      params,
+    );
+    List<DateTime> prayer = [
+      prayertimesss.fajr,
+      prayertimesss.dhuhr,
+      prayertimesss.asr,
+      prayertimesss.maghrib,
+      prayertimesss.isha,
+    ];
+    return prayer;
+  }
+}

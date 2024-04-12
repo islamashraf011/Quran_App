@@ -27,11 +27,13 @@ Future<Position> getCurrentLocationofDevice(BuildContext context) async {
   if (permission == LocationPermission.deniedForever && context.mounted) {
     showSnackBar(
       context,
-      "لا يمكنك استخدام الخدمه حتي السماح للتطبيق الوصول للموقع الخاص بك",
+      "لا يمكنك استخدام هذه الخدمه حتي السماح للتطبيق بالوصول إلي الموقع الخاص بك",
     );
   }
 
   //After check return the current location of device
-  Position currentLocation = await Geolocator.getCurrentPosition();
+  Position currentLocation = await Geolocator.getCurrentPosition(
+    desiredAccuracy: LocationAccuracy.high,
+  );
   return currentLocation;
 }

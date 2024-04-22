@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:quran_app/widgets/qiblah/check_location_permission_method.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import '../../constants/constants.dart';
@@ -14,18 +13,16 @@ class QiblahViewBody extends StatefulWidget {
 
 class _QiblahViewBodyState extends State<QiblahViewBody> {
   late Stream<QiblahDirection> stream;
-  late Future<Position> currentLocation;
   @override
   void initState() {
     super.initState();
-    currentLocation = getCurrentLocationofDevice(context);
     stream = FlutterQiblah.qiblahStream;
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: currentLocation,
+    return FutureBuilder<Map<String, dynamic>>(
+      future: getCurrentLocationofDevice(context),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Center(

@@ -14,7 +14,6 @@ class CustomPrayTimeShape extends StatelessWidget {
   });
 
   @override
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PrayTimerCubit()..startCountDown(),

@@ -32,6 +32,14 @@ const String kAzkarMecca = "assets/jsons/azkar/azkar_mecca.json";
 const String kAzkarWakingUp = "assets/jsons/azkar/azkar_wake_up.json";
 const String kAzkarWashing = "assets/jsons/azkar/azkar_washing.json";
 
+const List<String> listPrayerName = [
+  "موعد صلاة الفجر: ",
+  "موعد صلاة الظهر: ",
+  "موعد صلاة العصر: ",
+  "موعد صلاة المغرب: ",
+  "موعد صلاة العشاء: ",
+];
+
 const List<String> namesofAzkar = [
   "أذكـــار الصبـــاح",
   "أذكـــار المســـاء",

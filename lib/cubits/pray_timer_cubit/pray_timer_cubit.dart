@@ -31,13 +31,24 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
           DateTime nextPrayerTime;
           int currentIndex = 0;
 
-          for (int i = 0; i < listofPrayTime.length; i++) {
-            if (currentTime.isBefore(listofPrayTime[i])) {
-              nextPrayerTime = listofPrayTime[i];
-              difference = currentTime.difference(nextPrayerTime);
-              formattedTime = formatDuration(difference.abs());
-              currentIndex = i;
-              break;
+          // Check if it's 12:00 AM (midnight)
+          if (currentTime.hour == 0 &&
+              currentTime.minute == 0 &&
+              currentTime.second == 0) {
+            currentIndex = 0;
+            // Reset the list of prayer times for the next day
+            getCurrentPrayerTime().then((value) {
+              startCountDown();
+            });
+          } else {
+            for (int i = 0; i < listofPrayTime.length; i++) {
+              if (currentTime.isBefore(listofPrayTime[i])) {
+                nextPrayerTime = listofPrayTime[i];
+                difference = currentTime.difference(nextPrayerTime);
+                formattedTime = formatDuration(difference.abs());
+                currentIndex = i;
+                break;
+              }
             }
           }
           emit(

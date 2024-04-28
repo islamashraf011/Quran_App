@@ -6,6 +6,7 @@ const String kCompassImage = "assets/images/compass.png";
 const String kNeedleImage = "assets/images/needle.png";
 const String kMeccahImage = "assets/images/Mecca.png";
 const String kMaher = "assets/images/maher.png";
+const String kAppIcon = "@mipmap/ic_launcher";
 
 const Color kPrimaryColor = Color(0xff15a78e);
 const Color kCardColorOne = Color(0xff13a088);

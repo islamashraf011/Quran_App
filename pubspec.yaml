@@ -48,6 +48,7 @@ dependencies:
   just_audio_background: ^0.0.1-beta.11
   adhan: ^2.0.0+1
   restart_app: ^1.2.1
+  flutter_local_notifications: ^17.1.0
 
 dev_dependencies:
   flutter_test:

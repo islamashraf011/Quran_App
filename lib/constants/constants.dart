@@ -41,6 +41,14 @@ const List<String> listPrayerName = [
   "موعد صلاة العشاء: ",
 ];
 
+const List<String> notificationPrayerName = [
+  "موعد صلاة الفجر ",
+  "موعد صلاة الظهر ",
+  "موعد صلاة العصر ",
+  "موعد صلاة المغرب ",
+  "موعد صلاة العشاء ",
+];
+
 const List<String> namesofAzkar = [
   "أذكـــار الصبـــاح",
   "أذكـــار المســـاء",

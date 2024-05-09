@@ -49,6 +49,7 @@ dependencies:
   adhan: ^2.0.0+1
   restart_app: ^1.2.1
   flutter_local_notifications: ^17.1.0
+  timezone: ^0.9.3
 
 dev_dependencies:
   flutter_test:

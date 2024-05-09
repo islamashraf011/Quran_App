@@ -30,3 +30,15 @@ class SaveLocationInfo {
     };
   }
 }
+
+class NotificationState {
+  Future<void> saveState(bool isSelected) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isSelected', isSelected);
+  }
+
+  Future<bool> loadState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool("isSelected") ?? false;
+  }
+}

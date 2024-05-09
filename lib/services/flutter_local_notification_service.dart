@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:quran_app/constants/constants.dart';
@@ -40,7 +41,7 @@ class LocalNotificationService {
   static void showNotifications(
       List<DateTime> prayerTimes, int currentIndex) async {
     try {
-      NotificationDetails notificationDetails = getNotificationDetails();
+      NotificationDetails notificationDetails = getNotificationDetails('azan');
 
       final String timeZoneName = tz.local.name;
       final DateTime scheduledTime = prayerTimes[currentIndex];
@@ -76,7 +77,8 @@ class LocalNotificationService {
 // Responsible to show Zekr Notification Every Day
   static void showPeriodicNotification() async {
     try {
-      final NotificationDetails notificationDetails = getNotificationDetails();
+      final NotificationDetails notificationDetails =
+          getNotificationDetails(null);
       List<AzkarModel> azkar = await AzkarSevice().getAzkarData(kPrayerQuran);
       int currentIndex = 0;
       periodicTimer = Timer.periodic(
@@ -102,8 +104,8 @@ class LocalNotificationService {
   }
 
 //Responsible for Getting Notification Details (sound,icon,color..)
-  static NotificationDetails getNotificationDetails() {
-    const AndroidNotificationDetails details = AndroidNotificationDetails(
+  static NotificationDetails getNotificationDetails(String? soundPath) {
+    AndroidNotificationDetails details = AndroidNotificationDetails(
       "channelId",
       "channelName",
       priority: Priority.high,
@@ -112,10 +114,13 @@ class LocalNotificationService {
       icon: 'ic_launcher_foreground',
       color: kAzkarColor,
       enableVibration: false,
-      styleInformation: BigTextStyleInformation(''),
+      styleInformation: const BigTextStyleInformation(''),
+      sound: soundPath != null
+          ? RawResourceAndroidNotificationSound(soundPath)
+          : null,
     );
 
-    const NotificationDetails notificationDetails = NotificationDetails(
+    NotificationDetails notificationDetails = NotificationDetails(
       android: details,
     );
     return notificationDetails;

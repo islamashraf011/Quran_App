@@ -3,6 +3,7 @@ import 'package:adhan/adhan.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/services/change_duration_format.dart';
+import 'package:quran_app/services/flutter_local_notification_service.dart';
 import '../../constants/constants.dart';
 import '../../services/shared_prefrence_service.dart';
 import '../../widgets/qiblah/check_location_permission_method.dart';
@@ -28,7 +29,7 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
         (timer) {
           var currentTime = DateTime.now();
           Duration? difference;
-          DateTime nextPrayerTime;
+          DateTime? nextPrayerTime;
           int currentIndex = 0;
 
           // Check if it's 12:00 AM (midnight)
@@ -57,6 +58,10 @@ class PrayTimerCubit extends Cubit<PrayTimerState> {
               listPrayerName[currentIndex],
               listofPrayTime[currentIndex],
             ),
+          );
+          LocalNotificationService.showNotifications(
+            listofPrayTime,
+            currentIndex,
           );
         },
       );

@@ -50,6 +50,7 @@ dependencies:
   restart_app: ^1.2.1
   flutter_local_notifications: ^17.1.0
   timezone: ^0.9.3
+  workmanager: ^0.5.2
 
 dev_dependencies:
   flutter_test:

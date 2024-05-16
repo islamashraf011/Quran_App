@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/services/shared_prefrence_service.dart';
+import 'package:workmanager/workmanager.dart';
 import '../components/show_snack_bar.dart';
 import '../services/flutter_local_notification_service.dart';
+import '../services/work_manager_service.dart';
 
 class NotificationPermission extends StatefulWidget {
   const NotificationPermission({
@@ -14,6 +16,7 @@ class NotificationPermission extends StatefulWidget {
 
 class _NotificationPermissionState extends State<NotificationPermission> {
   bool isSelected = false;
+  WorkManagerService workManagerService = WorkManagerService();
 
   @override
   void initState() {
@@ -50,14 +53,15 @@ class _NotificationPermissionState extends State<NotificationPermission> {
         });
         if (isSelected) {
           await LocalNotificationService.getPermission();
-          LocalNotificationService.showPeriodicNotification();
+          await workManagerService.init();
 
           if (context.mounted) {
             showSnackBar(context, "تم تفعيل الإشـعـارات");
           }
         } else {
           showSnackBar(context, "تم تعطيل الإشـعـارات");
-          LocalNotificationService.cancelNotification();
+          await LocalNotificationService.cancelNotification();
+          await Workmanager().cancelAll();
         }
       },
     );

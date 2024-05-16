@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -13,7 +14,6 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static onTap(NotificationResponse notificationResponse) {}
-  static Timer? periodicTimer;
 
   static Future init() async {
     try {
@@ -41,7 +41,8 @@ class LocalNotificationService {
   static void showNotifications(
       List<DateTime> prayerTimes, int currentIndex) async {
     try {
-      NotificationDetails notificationDetails = getNotificationDetails('azan');
+      NotificationDetails notificationDetails =
+          getNotificationDetails('azan', 'channel1', 'AzanChannel');
 
       final String timeZoneName = tz.local.name;
       final DateTime scheduledTime = prayerTimes[currentIndex];
@@ -61,7 +62,7 @@ class LocalNotificationService {
       await flutterLocalNotificationsPlugin.zonedSchedule(
         currentIndex,
         "الآذان",
-        "حــان الآن ${notificationPrayerName[currentIndex]}",
+        "حــان الآن ${notificationPrayerName[currentIndex]}🌸",
         tZNotificationTime,
         notificationDetails,
         uiLocalNotificationDateInterpretation:
@@ -75,26 +76,17 @@ class LocalNotificationService {
   }
 
 // Responsible to show Zekr Notification Every Day
-  static void showPeriodicNotification() async {
+  static Future<void> showPeriodicNotification() async {
     try {
       final NotificationDetails notificationDetails =
-          getNotificationDetails(null);
+          getNotificationDetails(null, 'channel2', 'AzkarChannel');
       List<AzkarModel> azkar = await AzkarSevice().getAzkarData(kPrayerQuran);
-      int currentIndex = 0;
-      periodicTimer = Timer.periodic(
-        const Duration(hours: 12),
-        (timer) {
-          flutterLocalNotificationsPlugin.show(
-            currentIndex,
-            "أذكــار يـومـيـة",
-            azkar[currentIndex].zekr,
-            notificationDetails,
-          );
-          currentIndex++;
-          if (currentIndex >= azkar.length) {
-            currentIndex = 0;
-          }
-        },
+      int randomIndex = Random().nextInt(azkar.length - 1);
+      await flutterLocalNotificationsPlugin.show(
+        randomIndex,
+        "أذكــار يـومـيـة🌹",
+        '${azkar[randomIndex].zekr}🌸',
+        notificationDetails,
       );
     } catch (e) {
       debugPrint(
@@ -104,10 +96,11 @@ class LocalNotificationService {
   }
 
 //Responsible for Getting Notification Details (sound,icon,color..)
-  static NotificationDetails getNotificationDetails(String? soundPath) {
+  static NotificationDetails getNotificationDetails(
+      String? soundPath, String channelId, String channelName) {
     AndroidNotificationDetails details = AndroidNotificationDetails(
-      "channelId",
-      "channelName",
+      channelId,
+      channelName,
       priority: Priority.high,
       importance: Importance.max,
       playSound: true,
@@ -145,7 +138,6 @@ class LocalNotificationService {
   static Future cancelNotification() async {
     try {
       await flutterLocalNotificationsPlugin.cancelAll();
-      periodicTimer!.cancel();
     } catch (e) {
       debugPrint(
         'Exception occurred: ${e.toString()}',

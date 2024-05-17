@@ -82,7 +82,6 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
 
         await audioPlayer.seekToNext();
 
-        currentIndex++;
         isPlaying = true;
 
         emit(
@@ -112,7 +111,6 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
 
         await audioPlayer.seekToPrevious();
 
-        currentIndex--;
         isPlaying = true;
 
         emit(

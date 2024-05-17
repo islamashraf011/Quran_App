@@ -41,8 +41,11 @@ class LocalNotificationService {
   static void showNotifications(
       List<DateTime> prayerTimes, int currentIndex) async {
     try {
-      NotificationDetails notificationDetails =
-          getNotificationDetails('azan', 'channel1', 'AzanChannel');
+      NotificationDetails notificationDetails = getNotificationDetails(
+        'AzanNotificationChannel',
+        'AzanChannel',
+        'azan',
+      );
 
       final String timeZoneName = tz.local.name;
       final DateTime scheduledTime = prayerTimes[currentIndex];
@@ -79,7 +82,7 @@ class LocalNotificationService {
   static Future<void> showPeriodicNotification() async {
     try {
       final NotificationDetails notificationDetails =
-          getNotificationDetails(null, 'channel2', 'AzkarChannel');
+          getNotificationDetails('channel2', 'AzkarChannel', null);
       List<AzkarModel> azkar = await AzkarSevice().getAzkarData(kPrayerQuran);
       int randomIndex = Random().nextInt(azkar.length - 1);
       await flutterLocalNotificationsPlugin.show(
@@ -97,10 +100,14 @@ class LocalNotificationService {
 
 //Responsible for Getting Notification Details (sound,icon,color..)
   static NotificationDetails getNotificationDetails(
-      String? soundPath, String channelId, String channelName) {
+    String channelId,
+    String channelName,
+    String? soundPath,
+  ) {
     AndroidNotificationDetails details = AndroidNotificationDetails(
       channelId,
       channelName,
+      channelDescription: "",
       priority: Priority.high,
       importance: Importance.max,
       playSound: true,

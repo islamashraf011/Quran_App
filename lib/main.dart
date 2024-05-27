@@ -15,18 +15,18 @@ import 'services/flutter_local_notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    await SystemChrome.setPreferredOrientations(
-      [
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ],
-    );
     await JustAudioBackground.init(
       androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
       androidNotificationChannelName: 'Audio playback',
       androidNotificationOngoing: true,
     );
     await LocalNotificationService.init();
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
   } catch (e) {
     debugPrint(
       'Exception occurred: ${e.toString()}',

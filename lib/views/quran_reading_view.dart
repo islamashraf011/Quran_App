@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/services/shared_prefrence_service.dart';
 import '../components/custom_quran_app_bar.dart';
+import '../services/show_surah_content.dart';
 import '../widgets/quran_reading_view_body.dart';
 
 class QuranReadingView extends StatefulWidget {
@@ -57,15 +58,20 @@ class _QuranReadingViewState extends State<QuranReadingView> {
                     curve: Curves.easeIn,
                   );
                 },
+                showContent: () {
+                  showSurahContent(context, pageController);
+                },
               ),
             Expanded(
               child: QuranReadingViewBody(
                 pageController: pageController,
                 markedPageIndex: markedPageIndex ?? 0,
                 onBookmarkTap: (index) {
-                  setState(() {
-                    markedPageIndex = index;
-                  });
+                  setState(
+                    () {
+                      markedPageIndex = index;
+                    },
+                  );
                 },
               ),
             ),
